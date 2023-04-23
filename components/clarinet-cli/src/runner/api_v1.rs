@@ -758,6 +758,7 @@ fn mine_block(state: &mut OpState, args: MineBlockArgs) -> Result<String, AnyErr
                             index: block_height.saturating_sub(1).into(),
                             hash: format!("0x{}", merkle_tree.root().to_hex()),
                         },
+                        stacks_block_hash: format!("0x{}", merkle_tree.root().to_hex()),
                         pox_cycle_index: 0,
                         pox_cycle_position: 0,
                         pox_cycle_length: 0,

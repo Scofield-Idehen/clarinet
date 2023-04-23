@@ -104,24 +104,25 @@ impl DevnetEventObserverConfig {
         )
         .expect("unable to load network manifest");
 
+        let stacks_node_rpc_url = format!("http://{}", services_map_hosts.stacks_node_host);
         let event_observer_config = EventObserverConfig {
-            normalization_enabled: true,
-            grpc_server_enabled: false,
             hooks_enabled: true,
             bitcoin_rpc_proxy_enabled: true,
+            control_api_enabled: true,
             event_handlers: vec![],
             chainhook_config: Some(chainhooks),
             ingestion_port: devnet_config.orchestrator_ingestion_port,
             control_port: devnet_config.orchestrator_control_port,
-            bitcoin_node_username: devnet_config.bitcoin_node_username.clone(),
-            bitcoin_node_password: devnet_config.bitcoin_node_password.clone(),
-            bitcoin_node_rpc_url: format!("http://{}", services_map_hosts.bitcoin_node_host),
-            stacks_node_rpc_url: format!("http://{}", services_map_hosts.stacks_node_host),
+            bitcoind_rpc_username: devnet_config.bitcoin_node_username.clone(),
+            bitcoind_rpc_password: devnet_config.bitcoin_node_password.clone(),
+            bitcoind_rpc_url: format!("http://{}", services_map_hosts.bitcoin_node_host),
+            stacks_node_rpc_url: stacks_node_rpc_url.clone(),
             operators: HashSet::new(),
             display_logs: true,
             cache_path: devnet_config.working_dir.to_string(),
             bitcoin_network: BitcoinNetwork::Regtest,
             stacks_network: chainhook_event_observer::chainhook_types::StacksNetwork::Devnet,
+            bitcoin_block_signaling: chainhook_event_observer::chainhook_types::BitcoinBlockSignaling::Stacks(stacks_node_rpc_url)
         };
 
         DevnetEventObserverConfig {
@@ -409,7 +410,7 @@ pub async fn start_chains_coordinator(
                     }
                 }
             }
-            ObserverEvent::HookRegistered(hook) => {
+            ObserverEvent::HookRegistered(hook, _) => {
                 let message = format!("New hook \"{}\" registered", hook.name());
                 let _ = devnet_event_tx.send(DevnetEvent::info(message));
             }

@@ -33,7 +33,7 @@ chrono = "0.4.20"
 futures = "0.3.12"
 base58 = "0.2.0"
 
-chainhook-event-observer = { version = "=1.0.7", default-features = false, features = ["log", "ordinals"], path = "../../../chainhook/components/chainhook-event-observer" }
+chainhook-event-observer = { version = "=1.0.7", default-features = false, features = ["log", "ordinals", "zeromq"], path = "../../../chainhook/components/chainhook-event-observer" }
 # chainhook-event-observer = { version = "=1.0.6", default-features = false, features = ["log", "ordinals"] }
 stacks-rpc-client = { path = "../stacks-rpc-client" }
 clarinet-files = { path = "../clarinet-files", features = ["cli"]  }

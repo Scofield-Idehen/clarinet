@@ -1,11 +1,6 @@
 [workspace]
 members = [
     "components/clarinet-deployments",
-    "components/clarinet-files",
-    "components/clarinet-utils",
-    "components/clarity-repl",
-    "components/hiro-system-kit",
     "components/stacks-network",
-    "components/stacks-rpc-client",
 ]
 default-members = ["components/stacks-network"]

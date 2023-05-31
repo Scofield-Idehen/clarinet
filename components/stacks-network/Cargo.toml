@@ -35,12 +35,12 @@ base58 = "0.2.0"
 
 chainhook-event-observer = { version = "=1.0.6", default-features = false, features = ["log", "ordinals"], path = "../../../chainhook/components/chainhook-event-observer" }
 # chainhook-event-observer = { version = "=1.0.6", default-features = false, features = ["log", "ordinals"] }
-stacks-rpc-client = { path = "../stacks-rpc-client" }
-clarinet-files = { path = "../clarinet-files", features = ["cli"]  }
+stacks-rpc-client = { version = "1.0.1" }
+clarinet-files = { version = "1.0.0", features = ["cli"]  }
 clarinet-deployments = { path = "../clarinet-deployments", features = ["cli"]  }
-clarinet-utils = { path = "../clarinet-utils"  }
-hiro-system-kit = { path = "../hiro-system-kit", features = ["log"] }
-clarity-repl = { path = "../clarity-repl", features = ["cli"] }
+clarinet-utils = { version = "1.0.0" }
+hiro-system-kit = { version = "0.1.0", features = ["log"] }
+clarity-repl = { version = "1.5.0", features = ["cli"] }
 dirs = { version = "4.0.0" }
 clap = {version = "4.2.7", features = [ "derive" ] }
 serde_yaml = "0.9.21"
